@@ -3,103 +3,55 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AI Beleza | Agendamento inteligente para beleza</title>
+    <meta name="theme-color" content="#0b6b47">
+    <meta
+      name="description"
+      content="Encontre uma cadeira para trabalhar ou disponibilize uma cadeira no seu salão."
+    >
+    <title>AI Beleza | Encontre ou disponibilize uma cadeira</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="./index.html">
-        <span>AI BELEZA</span>
-      </a>
-      <nav class="topnav" aria-label="Navegacao principal">
-        <a href="#como-funciona">Como funciona</a>
-        <a href="#quem-somos">Quem Somos</a>
-        <a href="#contato">Contato</a>
-      </nav>
-    </header>
+    <main class="landing" aria-labelledby="page-title">
+      <h1 id="page-title" class="sr-only">
+        Encontre uma cadeira para trabalhar ou disponibilize uma cadeira no seu salão
+      </h1>
 
-    <main>
-      <section class="hero-section simple-hero" id="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">AI BELEZA</p>
-          <h1>Revelando sua melhor beleza.</h1>
-          <p class="lede">Imagem, tecnologia e atendimento organizado para conectar beleza e presenca digital.</p>
-          <div class="hero-actions simple-hero-actions">
-            <a class="primary-action" href="https://instagram.com/ai_beleza" target="_blank" rel="noreferrer">Acompanhar no Instagram</a>
-            <a class="secondary-action" href="#como-funciona">Como funciona</a>
-          </div>
-        </div>
+      <section class="landing-stage" aria-label="Conectamos salões e profissionais da beleza">
+        <picture class="landing-picture">
+          <source
+            media="(min-width: 720px)"
+            srcset="./assets/ai-beleza-cadeiras-profissionais-desktop.png"
+          >
+          <img
+            src="./assets/ai-beleza-cadeiras-profissionais-mobile.png"
+            alt="Salão com cadeiras disponíveis ao lado de um grupo diverso de profissionais da beleza"
+            width="1024"
+            height="1536"
+            fetchpriority="high"
+          >
+        </picture>
 
-        <div class="hero-visual">
-          <div class="img-container">
-            <img src="./assets/hero-site-01.jpg" alt="Ambiente premium de salao com atendimento de beleza">
-            <span class="ai-label">IMAGEM GERADA POR IA</span>
-          </div>
-        </div>
-      </section>
+        <a
+          class="whatsapp-cta whatsapp-cta--chairs"
+          href="https://wa.me/5511960241933?text=Ol%C3%A1%2C%20quero%20disponibilizar%20uma%20cadeira%20no%20meu%20sal%C3%A3o."
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Quero disponibilizar uma cadeira no meu salão pelo WhatsApp"
+        >
+          Quero disponibilizar uma cadeira
+        </a>
 
-      <section id="como-funciona" class="workband">
-        <div class="section-heading">
-          <p class="eyebrow">Fluxo essencial</p>
-          <h2>Atendimento organizado em 3 passos</h2>
-        </div>
-        <div class="flow-visual">
-          <article class="flow-step">
-            <span>01</span>
-            <strong>Comece pelo Instagram</strong>
-            <small>Fale com a gente e diga o que voce procura.</small>
-          </article>
-          <article class="flow-step">
-            <span>02</span>
-            <strong>Conte seu perfil</strong>
-            <small>Entendemos seu estilo e sua necessidade para orientar melhor o atendimento.</small>
-          </article>
-          <article class="flow-step">
-            <span>03</span>
-            <strong>Atendimento personalizado</strong>
-            <small>Voce conversa com mais clareza, cuidado e organizacao.</small>
-          </article>
-        </div>
-      </section>
-
-      <section id="quem-somos" class="workband about-band">
-        <div class="about-grid">
-          <div class="img-container">
-            <img src="./assets/hero-site-02.jpg" alt="Profissional realizando atendimento premium">
-            <span class="ai-label">IMAGEM GERADA POR IA</span>
-          </div>
-          <div class="hero-copy">
-            <h2>Quem Somos</h2>
-            <p class="lede">O AI Beleza conecta clientes e profissionais com atendimento organizado, rapido e rastreavel para operacao real.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contato" class="workband contact-band">
-        <div class="section-heading">
-          <p class="eyebrow">Acompanhe no Instagram</p>
-          <h2>Atendimento personalizado</h2>
-          <p class="lede">Clique no botao para continuar no Instagram e viver uma nova experiencia com nosso atendimento personalizado.</p>
-        </div>
-        <div class="contact-actions">
-          <a class="primary-action" href="https://instagram.com/ai_beleza" target="_blank" rel="noreferrer">Acompanhar no Instagram</a>
-        </div>
+        <a
+          class="whatsapp-cta whatsapp-cta--professionals"
+          href="https://wa.me/5511960241933?text=Ol%C3%A1%2C%20quero%20encontrar%20uma%20cadeira%20para%20trabalhar."
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Quero encontrar uma cadeira para trabalhar pelo WhatsApp"
+        >
+          Quero encontrar uma cadeira
+        </a>
       </section>
     </main>
-
-    <a class="fixed-whatsapp" href="https://instagram.com/ai_beleza" target="_blank" rel="noreferrer" aria-label="Acompanhar no Instagram">
-      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2C6.57 2 2.12 6.45 2.12 11.91c0 1.75.46 3.45 1.33 4.95L2 22l5.31-1.39a9.86 9.86 0 0 0 4.72 1.2h.01c5.46 0 9.91-4.45 9.91-9.91a9.8 9.8 0 0 0-2.9-6.99Zm-7.02 15.2h-.01a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.15.83.84-3.07-.2-.32a8.19 8.19 0 0 1-1.27-4.33c0-4.51 3.67-8.18 8.19-8.18 2.19 0 4.24.85 5.79 2.4a8.11 8.11 0 0 1 2.39 5.79c0 4.51-3.67 8.2-8.13 8.2Zm4.49-6.11c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.18-.7-.62-1.18-1.39-1.32-1.62-.14-.24-.01-.36.11-.48.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.79-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 1.99s.86 2.3.98 2.46c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.4 1.37.51.58.19 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.13.2-.56.2-1.03.14-1.13-.06-.1-.22-.16-.46-.28Z"/>
-      </svg>
-      Acompanhar no Instagram
-    </a>
-
-    <footer class="site-footer">
-      <div class="brand footer-brand">
-        <span>AI BELEZA</span>
-      </div>
-      <p>© 2026 AI Beleza. Atendimento organizado para beleza.</p>
-      <p><a href="./privacidade.html">Politica de privacidade</a></p>
-    </footer>
   </body>
 </html>
