@@ -1,10 +1,11 @@
 :root {
   color-scheme: light;
-  --page-bg: #e9dfd3;
-  --whatsapp: #118c5b;
-  --whatsapp-hover: #0b7148;
-  --focus: #ffffff;
-  --cta-shadow: 0 12px 28px rgba(4, 52, 33, 0.32);
+  --green: #087a4b;
+  --green-dark: #045e38;
+  --cream: #fff8ee;
+  --terracotta: #7c3f2f;
+  --gold: #e6c887;
+  --ink: #2e211d;
 }
 
 * {
@@ -18,158 +19,496 @@ body {
 
 body {
   margin: 0;
-  background: var(--page-bg);
-  color: #ffffff;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   overflow-x: hidden;
+  background: #151b17;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.landing {
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.landing-stage {
+.carousel {
   position: relative;
-  width: min(100vw, calc(100svh * 2 / 3), 1024px);
-  overflow: hidden;
   isolation: isolate;
-  box-shadow: 0 20px 55px rgba(55, 37, 24, 0.2);
+  width: min(100%, 112rem);
+  min-height: 100svh;
+  margin-inline: auto;
+  overflow: hidden;
+  background: #d7c5b1;
+  color: #fff;
 }
 
-.landing-picture,
-.landing-picture img {
-  display: block;
+.carousel__picture,
+.carousel__picture img,
+.carousel__shade {
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
 }
 
-.landing-picture img {
-  height: auto;
+.carousel:not([data-ready="true"]) .carousel__slides {
+  visibility: hidden;
 }
 
-.whatsapp-cta {
+.carousel__picture {
+  z-index: -2;
+}
+
+.carousel__picture img {
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel__shade {
+  z-index: -1;
+  pointer-events: none;
+  transition: background 320ms ease;
+}
+
+.brand-emblem {
+  --emblem-size: clamp(4.1rem, 15vw, 5.4rem);
+  position: absolute;
+  z-index: 4;
+  top: 1.1rem;
+  right: 1.15rem;
+  display: block;
+  width: var(--emblem-size);
+  height: var(--emblem-size);
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.94);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(25, 20, 30, 0.14);
+}
+
+.carousel[data-theme="direct"] .carousel__shade {
+  background:
+    linear-gradient(180deg, rgba(5, 24, 15, 0.7) 0%, rgba(5, 24, 15, 0.12) 34%, transparent 55%),
+    linear-gradient(0deg, rgba(4, 22, 13, 0.6) 0%, transparent 37%);
+}
+
+.carousel[data-theme="institutional"] .carousel__shade {
+  background:
+    linear-gradient(180deg, rgba(8, 39, 32, 0.72) 0%, rgba(8, 39, 32, 0.1) 36%, transparent 53%),
+    linear-gradient(0deg, rgba(7, 33, 28, 0.94) 0%, rgba(7, 33, 28, 0.45) 27%, transparent 50%);
+}
+
+.carousel[data-theme="human"] .carousel__shade {
+  background: linear-gradient(180deg, rgba(50, 35, 28, 0.08) 0%, transparent 58%, rgba(35, 24, 19, 0.44) 100%);
+}
+
+.slide {
   position: absolute;
   z-index: 2;
+  animation: slide-enter 360ms ease-out both;
+}
+
+.slide[hidden] {
+  display: none;
+}
+
+.slide h1,
+.slide p {
+  margin: 0;
+}
+
+.slide--direct {
+  top: clamp(4.5rem, 9vh, 6rem);
+  left: 1rem;
+  width: 46%;
+  text-align: left;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.4);
+}
+
+.slide--direct .slide__brand {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 12px 14px;
-  border: 2px solid rgba(255, 255, 255, 0.48);
-  border-radius: 16px;
-  background: rgba(17, 140, 91, 0.96);
-  box-shadow: var(--cta-shadow);
-  color: #ffffff;
-  font-size: clamp(0.78rem, 3.7vw, 1rem);
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 999px;
+  background: rgba(4, 65, 39, 0.56);
+  font-size: 0.72rem;
   font-weight: 800;
-  line-height: 1.18;
-  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.slide--direct .slide__brand span {
+  display: grid;
+  width: 1.5rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--green-dark);
+  font-size: 0.62rem;
+}
+
+.slide--direct h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 8.3vw, 3rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.slide--direct > p:last-child {
+  margin-top: 0.65rem;
+  font-size: clamp(0.74rem, 3vw, 0.95rem);
+  font-weight: 700;
+}
+
+.slide--institutional {
+  top: clamp(4.8rem, 9vh, 6.2rem);
+  left: 1.15rem;
+  width: 46%;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+}
+
+.slide__eyebrow {
+  margin-bottom: 0.45rem !important;
+  color: #f2dfb6;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.slide--institutional h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.1rem, 8.8vw, 3.5rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+
+.slide--institutional h1 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.slide--institutional > p:last-child {
+  margin-top: 0.55rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.8rem, 3.2vw, 1rem);
+  font-style: italic;
+}
+
+.slide--human {
+  top: clamp(4rem, 7.5vh, 5rem);
+  left: 0.75rem;
+  width: 42%;
+  padding: 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 1.4rem;
+  background: rgba(255, 248, 238, 0.92);
+  box-shadow: 0 14px 38px rgba(67, 42, 31, 0.22);
+  color: var(--ink);
+  backdrop-filter: blur(9px);
+}
+
+.slide--human .slide__eyebrow {
+  color: var(--terracotta);
+}
+
+.slide--human h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.98rem, 4.15vw, 1.42rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.slide--human > p:last-child {
+  margin-top: 0.5rem;
+  color: #5d463d;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.lead-actions {
+  position: absolute;
+  z-index: 3;
+  right: 0.9rem;
+  bottom: 1rem;
+  left: 0.9rem;
+  display: grid;
+  gap: 0.6rem;
+  transition: inset 320ms ease, gap 320ms ease;
+}
+
+.lead-action {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.9rem minmax(0, 1fr) 1.35rem;
+  column-gap: 0.55rem;
+  min-height: 4.6rem;
+  align-content: center;
+  align-items: center;
+  padding: 0.55rem 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1rem;
+  background: rgba(8, 122, 75, 0.97);
+  box-shadow: 0 11px 28px rgba(3, 45, 27, 0.35);
+  color: #fff;
   text-decoration: none;
-  text-wrap: balance;
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-  animation: cta-enter 620ms ease-out both, cta-pulse 2.8s ease-in-out 900ms infinite;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
-.whatsapp-cta--chairs {
-  top: 13.5%;
-  left: 5.5%;
-  width: 36%;
+.lead-action__audience,
+.lead-action__label {
+  grid-column: 2;
 }
 
-.whatsapp-cta--professionals {
-  right: 5.5%;
-  bottom: 10.5%;
-  width: 40%;
-  animation-delay: 160ms, 1.2s;
+.lead-action__audience {
+  margin-bottom: 0.15rem;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  opacity: 0.86;
+  text-transform: uppercase;
 }
 
-.whatsapp-cta:hover {
-  background: var(--whatsapp-hover);
-  box-shadow: 0 15px 34px rgba(4, 52, 33, 0.4);
+.lead-action__label {
+  font-size: clamp(0.85rem, 3.8vw, 1rem);
+  font-weight: 800;
+  line-height: 1.14;
+}
+
+.lead-action__arrow {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  font-size: 1.25rem;
+  text-align: right;
+}
+
+.lead-action__icon {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: #fff;
+  opacity: 0.96;
+}
+
+.icon-chair::before {
+  position: absolute;
+  top: 0.15rem;
+  left: 0.62rem;
+  width: 1.45rem;
+  height: 1.4rem;
+  border: 0.18rem solid currentcolor;
+  border-radius: 0.35rem 0.35rem 0.2rem 0.2rem;
+  content: "";
+}
+
+.icon-chair::after {
+  position: absolute;
+  top: 1.55rem;
+  left: 0.35rem;
+  width: 2rem;
+  height: 0.48rem;
+  border: 0.18rem solid currentcolor;
+  border-radius: 0.22rem;
+  content: "";
+}
+
+.icon-chair > span::before,
+.icon-chair > span::after {
+  position: absolute;
+  top: 2.02rem;
+  width: 0.18rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: currentcolor;
+  content: "";
+}
+
+.icon-chair > span::before {
+  left: 0.62rem;
+}
+
+.icon-chair > span::after {
+  right: 0.62rem;
+}
+
+.icon-dryer {
+  position: absolute;
+  top: 0.28rem;
+  left: 0.08rem;
+  width: 1.45rem;
+  height: 1.15rem;
+  border: 0.18rem solid currentcolor;
+  border-radius: 55% 45% 42% 52%;
+}
+
+.icon-dryer::before {
+  position: absolute;
+  top: 0.18rem;
+  right: -0.85rem;
+  width: 0.82rem;
+  height: 0.5rem;
+  border: 0.16rem solid currentcolor;
+  border-left: 0;
+  border-radius: 0 0.2rem 0.2rem 0;
+  content: "";
+}
+
+.icon-dryer::after {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.62rem;
+  width: 0.38rem;
+  height: 1.05rem;
+  border: 0.17rem solid currentcolor;
+  border-top: 0;
+  border-radius: 0 0 0.24rem 0.24rem;
+  content: "";
+  transform: rotate(-12deg);
+  transform-origin: top;
+}
+
+.icon-comb {
+  position: absolute;
+  right: 0.02rem;
+  bottom: 0.13rem;
+  width: 1.38rem;
+  height: 0.72rem;
+  border-top: 0.17rem solid currentcolor;
+  background: repeating-linear-gradient(90deg, currentcolor 0 0.12rem, transparent 0.12rem 0.25rem);
+  transform: rotate(-12deg);
+  transform-origin: center;
+}
+
+.lead-action:hover {
+  background: var(--green-dark);
   transform: translateY(-2px);
 }
 
-.whatsapp-cta:active {
-  transform: translateY(0) scale(0.98);
+.lead-action:focus-visible {
+  outline: 3px solid #fff2a8;
+  outline-offset: 3px;
 }
 
-.whatsapp-cta:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 4px;
+.carousel[data-theme="institutional"] .lead-action {
+  border-color: rgba(230, 200, 135, 0.95);
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.carousel[data-theme="human"] .lead-action--salon {
+  top: auto;
 }
 
-@keyframes cta-enter {
-  from {
-    opacity: 0;
-    transform: translateY(12px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes cta-pulse {
-  0%,
-  100% {
-    box-shadow: var(--cta-shadow);
-  }
-  50% {
-    box-shadow: 0 14px 34px rgba(4, 52, 33, 0.46), 0 0 0 6px rgba(37, 211, 102, 0.14);
-  }
+@keyframes slide-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (min-width: 720px) {
-  .landing-stage {
-    width: min(100vw, calc(100svh * 3 / 2), 1536px);
+  .brand-emblem {
+    --emblem-size: clamp(6rem, 8vw, 8.5rem);
+    top: clamp(1.5rem, 4vh, 2.5rem);
+    right: clamp(2rem, 5vw, 5rem);
+    border-width: 4px;
   }
 
-  .whatsapp-cta {
-    min-height: 58px;
-    padding: 14px 22px;
-    border-radius: 18px;
-    font-size: clamp(0.95rem, 1.35vw, 1.2rem);
+  .carousel__picture img {
+    object-position: center 42%;
   }
 
-  .whatsapp-cta--chairs {
-    top: 14%;
-    left: 5.5%;
-    width: min(28%, 330px);
+  .slide--direct {
+    top: clamp(3.5rem, 7vh, 5.2rem);
+    left: 4.5%;
+    width: 39%;
   }
 
-  .whatsapp-cta--professionals {
-    right: 7%;
-    bottom: 9%;
-    width: min(30%, 350px);
+  .slide--direct h1 {
+    font-size: clamp(3.4rem, 5.2vw, 5.6rem);
+  }
+
+  .slide--institutional {
+    top: clamp(4.5rem, 8vh, 6rem);
+    left: 5%;
+    width: min(34vw, 31rem);
+  }
+
+  .slide--human {
+    top: 6%;
+    left: 4.5%;
+    width: min(36%, 34rem);
+    padding: clamp(1.25rem, 2vw, 2rem);
+  }
+
+  .slide--human h1 {
+    font-size: clamp(1.9rem, 3.1vw, 3.2rem);
+  }
+
+  .lead-actions {
+    right: clamp(3rem, 6vw, 6rem);
+    bottom: 1.5rem;
+    left: clamp(3rem, 6vw, 6rem);
+    grid-template-columns: minmax(18rem, 29rem) minmax(18rem, 29rem);
+    justify-content: space-between;
+    gap: clamp(2rem, 8vw, 10rem);
+  }
+
+  .lead-action {
+    grid-template-columns: 3.5rem minmax(0, 1fr) 1.5rem;
+    column-gap: 0.75rem;
+    min-height: 5.3rem;
+    padding: 0.7rem 1rem;
+    border-radius: 1.15rem;
+  }
+
+  .lead-action__icon {
+    width: 3rem;
+    height: 3rem;
+    transform: scale(1.08);
+    transform-origin: center;
+  }
+
+  .lead-action__label {
+    font-size: clamp(1rem, 1.25vw, 1.16rem);
+  }
+
+  .carousel[data-theme="human"] .lead-action--salon {
+    transform: translateY(-24vh);
+  }
+
+  .carousel[data-theme="human"] .lead-action--salon:hover {
+    transform: translateY(calc(-24vh - 2px));
   }
 }
 
-@media (max-width: 380px) {
-  .whatsapp-cta {
-    min-height: 48px;
-    padding: 10px 11px;
-    border-radius: 14px;
-    font-size: 0.75rem;
+@media (max-height: 700px) and (max-width: 719px) {
+  .slide--direct,
+  .slide--institutional,
+  .slide--human {
+    top: 3.75rem;
+  }
+
+  .lead-actions {
+    bottom: 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .lead-action {
+    min-height: 3.75rem;
+    padding-block: 0.5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .whatsapp-cta {
-    animation: none;
-    transition: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

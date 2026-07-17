@@ -4,54 +4,83 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#0b6b47">
-    <meta
-      name="description"
-      content="Encontre uma cadeira para trabalhar ou disponibilize uma cadeira no seu salão."
-    >
-    <title>AI Beleza | Encontre ou disponibilize uma cadeira</title>
+    <meta name="description" content="AI Beleza conecta salões com cadeiras disponíveis a profissionais da beleza.">
+    <title>AI Beleza | Conectando salões e profissionais</title>
     <link rel="stylesheet" href="./styles.css">
+    <script src="./carousel.js" defer></script>
   </head>
   <body>
-    <main class="landing" aria-labelledby="page-title">
-      <h1 id="page-title" class="sr-only">
-        Encontre uma cadeira para trabalhar ou disponibilize uma cadeira no seu salão
-      </h1>
+    <main class="carousel" aria-label="Apresentação da AI Beleza">
+      <picture class="carousel__picture">
+        <source media="(min-width: 720px)" srcset="./assets/ai-beleza-cadeiras-profissionais-desktop.png">
+        <img
+          src="./assets/ai-beleza-cadeiras-profissionais-mobile.png"
+          alt="Salão com cadeiras disponíveis ao lado de profissionais da beleza"
+          width="1024"
+          height="1536"
+          fetchpriority="high"
+        >
+      </picture>
 
-      <section class="landing-stage" aria-label="Conectamos salões e profissionais da beleza">
-        <picture class="landing-picture">
-          <source
-            media="(min-width: 720px)"
-            srcset="./assets/ai-beleza-cadeiras-profissionais-desktop.png"
-          >
-          <img
-            src="./assets/ai-beleza-cadeiras-profissionais-mobile.png"
-            alt="Salão com cadeiras disponíveis ao lado de um grupo diverso de profissionais da beleza"
-            width="1024"
-            height="1536"
-            fetchpriority="high"
-          >
-        </picture>
+      <div class="carousel__shade" aria-hidden="true"></div>
 
+      <img
+        class="brand-emblem"
+        src="./assets/ai-beleza-emblema.png"
+        alt="Emblema AI Beleza"
+        width="1254"
+        height="1254"
+      >
+
+      <div class="carousel__slides" aria-live="polite">
+        <article class="slide slide--direct" data-slide="direct" aria-labelledby="direct-title">
+          <p class="slide__brand"><span>AI</span> Beleza</p>
+          <h1 id="direct-title">Conectando<br>oportunidades</h1>
+          <p>A gente faz essa ponte por você.</p>
+        </article>
+
+        <article class="slide slide--institutional" data-slide="institutional" aria-labelledby="institutional-title" hidden>
+          <p class="slide__eyebrow">Conectando oportunidades</p>
+          <h1 id="institutional-title"><span>AI</span> Beleza</h1>
+          <p>A inteligência a seu favor</p>
+        </article>
+
+        <article class="slide slide--human" data-slide="human" aria-labelledby="human-title" hidden>
+          <p class="slide__eyebrow">AI Beleza</p>
+          <h1 id="human-title">Unindo pessoas.<br>Conectando oportunidades.</h1>
+          <p>A gente faz essa ponte por você.</p>
+        </article>
+      </div>
+
+      <nav class="lead-actions" aria-label="Escolha como a AI Beleza pode ajudar">
         <a
-          class="whatsapp-cta whatsapp-cta--chairs"
+          class="lead-action lead-action--salon"
           href="https://wa.me/5511960241933?text=Ol%C3%A1%2C%20quero%20disponibilizar%20uma%20cadeira%20no%20meu%20sal%C3%A3o."
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Quero disponibilizar uma cadeira no meu salão pelo WhatsApp"
         >
-          Quero disponibilizar uma cadeira
+          <span class="lead-action__icon icon-chair" aria-hidden="true"><span></span></span>
+          <span class="lead-action__audience">Para salões</span>
+          <span class="lead-action__label">Quero disponibilizar uma cadeira</span>
+          <span class="lead-action__arrow" aria-hidden="true">→</span>
         </a>
 
         <a
-          class="whatsapp-cta whatsapp-cta--professionals"
+          class="lead-action lead-action--professional"
           href="https://wa.me/5511960241933?text=Ol%C3%A1%2C%20quero%20encontrar%20uma%20cadeira%20para%20trabalhar."
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Quero encontrar uma cadeira para trabalhar pelo WhatsApp"
         >
-          Quero encontrar uma cadeira
+          <span class="lead-action__icon icon-tools" aria-hidden="true">
+            <span class="icon-dryer"></span>
+            <span class="icon-comb"></span>
+          </span>
+          <span class="lead-action__audience">Para profissionais</span>
+          <span class="lead-action__label">Quero encontrar uma cadeira</span>
+          <span class="lead-action__arrow" aria-hidden="true">→</span>
         </a>
-      </section>
+      </nav>
+
     </main>
   </body>
 </html>
